@@ -367,7 +367,7 @@ body {
 @media (min-width: 1400px) {
   .video-grid {
     /* Muestra 4 videos por fila para aprovechar el espacio */
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
   }
 }
 
