@@ -377,19 +377,19 @@ body {
 
 @media (max-width: 650px) {
 
-  /* Ocultar solo el input donde se escribe, no todo el contenedor */
+  /* 1. Ocultar solo la caja de texto del buscador */
   .search-box input,
   .search-input { 
     display: none;
   }
 
-  /* Si tu `.search-box` tiene bordes o fondo, los quitamos en móvil */
+  /* Quitar bordes y fondo al contenedor de la caja para que no ocupe espacio */
   .search-box {
     border: none;
     background: transparent;
   }
 
-  /* Lupa visible, redonda e independiente */
+  /* 2. Lupa visible, redonda e independiente */
   .search-btn {
     display: flex !important;
     align-items: center;
@@ -399,34 +399,35 @@ body {
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    flex-shrink: 0; /* Impide que se colapse */
+    flex-shrink: 0;
   }
 
   .search-btn:hover {
     background-color: var(--bg-btn-hover);
   }
 
-  /* Ocultar solo el texto del botón Crear */
-  .create-btn span,
-  .create-btn .btn-text {
-    display: none !important;
-  }
-
-  /* Convertir Crear en botón redondo */
+  /* 3. OPCIÓN 1: Botón Crear MANTIENE texto e ícono (estilo cápsula) */
   .create-btn {
-    width: 40px;
-    height: 40px;
-    padding: 0;
-    border-radius: 50%;
+    width: auto;              /* Ancho automático según contenido */
+    height: 36px;
+    padding: 0 12px;
+    border-radius: 18px;       /* Forma de pastilla redondeada */
     display: flex;
     align-items: center;
-    justify-content: center;
-    flex-shrink: 0; /* Impide que el texto intente empujar las dimensiones */
+    gap: 6px;
+    flex-shrink: 0;            /* EVITA que se aplaste */
   }
 
-  /*  Alinear el centro adecuadamente */
+  /* Aseguramos que el texto del botón Crear NUNCA se oculte */
+  .create-btn span,
+  .create-btn .btn-text {
+    display: inline-block !important;
+  }
+
+  /* 4. Alinear el contenedor central a la derecha */
   .header-center {
     flex: 1;
+    display: flex;
     justify-content: flex-end;
     margin: 0;
     gap: 4px;
