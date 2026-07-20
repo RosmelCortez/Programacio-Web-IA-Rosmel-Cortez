@@ -1,0 +1,15 @@
+/* Estilos para el titular */
+.titular-grande {
+  font-size: 64px;         /* Tamaño de letra de 64px */
+  font-family: Arial, sans-serif; /* Tipografía Arial */
+  color: blue;             /* Color de letra azul */
+  background-color: red;   /* Color de fondo rojo */
+}
+
+/* Estilos para el botón */
+.boton {
+  font-size: 24px;         /* Tamaño de letra de 24px */
+  color: white;            /* Letras blancas */
+  background-color: blue;  /* Fondo azul */
+  border: 3px solid orange; /* Borde naranja  */
+}

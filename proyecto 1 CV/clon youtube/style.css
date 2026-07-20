@@ -1,0 +1,468 @@
+/* Paleta de colores idéntica a YouTube Dark */
+:root {
+  --bg-header: #0f0f0f;
+  --bg-search-input: #121212;
+  --bg-search-btn: #222222;
+  --bg-btn-hover: #272727;
+  --border-color: #303030;
+  --text-main: #f1f1f1;
+  --text-placeholder: #888888;
+}
+
+body {
+  margin: 0;
+  background-color: #0f0f0f;
+  font-family: "Roboto", Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;  /*Evita que la página entera tenga scroll; el scroll debe ser interno */
+}
+
+/* --- CONTENEDOR PRINCIPAL DEL HEADER --- */
+.yt-header {
+  display: flex;
+  justify-content: space-between; /* Empuja Left, Center y Right a sus esquinas */
+  align-items: center;
+  height: 56px;
+  padding: 0 16px;
+  background-color: var(--bg-header);
+  color: var(--text-main);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.logo-svg {
+  height: 20px;
+}
+
+/* El botón rojo */
+.yt-red-part {
+  fill: #FF0033; 
+}
+
+/* La palabra YouTube (para modo oscuro) */
+.yt-text-part path {
+  fill: white;
+}
+
+/* --- BLOQUE IZQUIERDO --- */
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.logo-container {
+  display: relative;
+  display: flex;
+  align-items: flex-start;
+}
+
+.logo {
+  height: 20px; /* Tamaño del logo de YT */
+}
+
+.country-code {
+  font-size: 10px;
+  color: #aaa;
+  margin-left: 4px;
+}
+
+/* --- BLOQUE CENTRAL (EL BUSCADOR) --- */
+.header-center {
+  display: flex;
+  align-items: center;
+  flex: 0 1 728px; /* Permite que el buscador crezca pero tenga un límite máximo */
+  gap: 16px;
+  margin: 0 32px;
+}
+
+.search-box {
+  display: flex;
+  width: 100%;
+  border: 1px solid var(--border-color);
+  border-radius: 40px 0 0 40px; /* Bordes redondeados de YouTube */
+  overflow: hidden;
+  background-color: var(--bg-search-input);
+}
+
+.search-input {
+  width: 100%;
+  border: none;
+  background: transparent;
+  padding: 0 16px;
+  color: var(--text-main);
+  font-size: 16px;
+  outline: none;
+  height: 40px;
+}
+
+.search-input::placeholder {
+  color: var(--text-placeholder);
+}
+
+.search-btn {
+  background-color: var(--bg-search-btn);
+  border: none;
+  border-left: 1px solid var(--border-color);
+  width: 64px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0 40px 40px 0;
+}
+
+.search-btn svg {
+  width: 24px;
+  height: 24px;
+  fill: var(--text-main);
+}
+
+/* --- BLOQUE DERECHO --- */
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Botón "Crear" */
+.create-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background-color: var(--bg-search-btn);
+  border: none;
+  color: var(--text-main);
+  padding: 0 16px;
+  height: 36px;
+  border-radius: 18px;
+  font-weight: 500;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.create-btn:hover {
+  background-color: var(--bg-btn-hover);
+}
+
+/* Botones de Iconos Redondos comunes (Menú, Mic, Notificaciones) */
+.icon-btn {
+  background: transparent;
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.icon-btn:hover, .mic-btn:hover {
+  background-color: var(--bg-btn-hover);
+}
+
+.icon-btn svg, .mic-btn svg {
+  width: 24px;
+  height: 24px;
+  fill: var(--text-main);
+}
+
+.mic-btn {
+  background-color: #181818;
+}
+
+/* Notificación Roja */
+.notification-container {
+  position: relative;
+}
+
+.notification-badge {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  background-color: #cc0000;
+  color: white;
+  font-size: 10px;
+  font-weight: bold;
+  padding: 2px 4px;
+  border-radius: 10px;
+  border: 2px solid var(--bg-header);
+}
+
+/* Avatar de usuario */
+.user-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-left: 8px;
+  cursor: pointer;
+}
+
+
+
+/* --- BARRA LATERAL --- */
+.mini-sidebar {
+  width: 72px;
+  height: 100%; /* Ocupa el alto de su contenedor padre (.main-container) */
+  background-color: #0f0f0f;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 4px;
+  flex-shrink: 0; /* Evita que se colapse el ancho */
+  box-sizing: border-box;
+}
+
+/* --- CADA BOTÓN (ITEM) --- */
+.mini-sidebar-item {
+  display: flex;
+  flex-direction: column;       /* Pone el ícono ARRIBA y el texto ABAJO */
+  justify-content: center;      /* Centra verticalmente */
+  align-items: center;          /* Centra horizontalmente */
+  width: 64px;                  /* Deja un pequeño margen a los lados del botón */
+  height: 74px;                 /* Altura exacta del bloque */
+  border-radius: 10px;          /* Bordes curvos modernos */
+  text-decoration: none;
+  color: #f1f1f1;
+  gap: 6px;                     /* Separación entre el ícono y el texto inferior */
+  transition: background-color 0.15s ease;
+}
+
+/* Hover e item activo */
+.mini-sidebar-item:hover {
+  background-color: #272727;
+}
+
+.mini-sidebar-item.active {
+  /* Si quieres que se note seleccionado */
+  font-weight: 500;
+}
+
+/* --- ÍCONOS Y TEXTO --- */
+.mini-sidebar-icon {
+  width: 24px;
+  height: 24px;
+  fill: #f1f1f1;
+}
+
+.mini-sidebar-text {
+  font-size: 10px;              
+  text-align: center;
+  white-space: nowrap;          /* Evita que el texto salte de línea */
+  overflow: hidden;
+  text-overflow: ellipsis;      /* Si el texto es largo (ej. "Suscripciones"), pone "..." */
+  width: 100%;                  /* Ocupa el ancho para controlar el recorte */
+  padding: 0 2px;
+}
+
+
+/* --- DISEÑO DE DISTRIBUCIÓN GLOBAL --- */
+.main-container {
+  display: flex;
+  flex: 1; /* Toma todo el espacio vertical restante debajo del header */
+  height: calc(100vh - 56px); /* Altura exacta quitando el header */
+  width: 100%;
+  position: relative;
+
+}
+
+.content-area {
+  flex: 1;                     /* Toma todo el espacio restante a la derecha */
+  height: 100%; 
+  background-color: #0f0f0f;
+  padding: 0 24px;             /* Margen interno para separar los elementos de los bordes */
+  display: flex;
+  flex-direction: column; /* Alinea los chips ARRIBA y los videos ABAJO */
+  justify-content: flex-start; /* Fuerza a que todo empiece desde arriba */
+  overflow-y: auto;      
+  /*align-items: flex-start;    Alinea al inicio horizontalmente */
+  box-sizing: border-box;
+}
+
+
+/* --- BARRA DE ETIQUETAS (CHIPS) --- */
+.chips-wrapper {
+  display: flex;
+  gap: 12px;                   /* Espaciado exacto entre cada etiqueta */
+  padding: 12px 0;
+  background-color: #0f0f0f;
+  width: 100%;
+  overflow-x: auto;
+  white-space: nowrap;
+  flex-shrink: 0; /*Evita que la barra de etiquetas se aplaste o se deforme */
+}
+
+/* Ocultar barra de scroll en Chrome, Safari y navegadores modernos */
+.chips-wrapper::-webkit-scrollbar {
+  display: none;
+}
+
+/* Ocultar barra de scroll en Firefox y Edge */
+.chips-wrapper {
+  -ms-overflow-style: none;  
+  scrollbar-width: none;     
+}
+
+/* --- ESTILO DE CADA BOTÓN INDIVIDUAL --- */
+.chip {
+  background-color: #272727;   
+  color: #f1f1f1;
+  border: none;
+  padding: 0 12px;
+  height: 32px;
+  border-radius: 8px;          /* Esquinas suavizadas de los botones */
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+  display: inline-block;
+}
+
+/* Hover al pasar el puntero */
+.chip:hover {
+  background-color: #3f3f3f;
+}
+
+/* El botón seleccionado ("Todos") */
+.chip.active {
+  background-color: #ffffff;   /* Fondo blanco */
+  color: #0f0f0f;              /* Texto oscuro */
+}
+
+
+/* --- CUADRÍCULA DE VIDEOS --- */
+.video-grid {
+  display: grid;
+  /*crea columnas de mínimo 300px. Si hay espacio, pone más columnas. */
+  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+  gap: 16px 16px; /* Espacio entre filas y columnas */
+  width: 100%;
+  padding-top: 24px;
+  padding-bottom: 40px; /* Espacio extra al final para poder hacer scroll cómodo */
+}
+
+
+/* Cuando la pantalla sea tamaño Tablet o más grande (mínimo 600px) */
+@media (min-width: 600px) {
+  .video-grid {
+    /* Muestra 2 videos por fila */
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Cuando la pantalla sea tamaño Laptop (mínimo 1000px) */
+@media (min-width: 1000px) {
+  .video-grid {
+    /* Muestra 3 videos por fila (como en tu captura) */
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Cuando la pantalla sea un monitor Gigante (mínimo 1400px) */
+@media (min-width: 1400px) {
+  .video-grid {
+    /* Muestra 4 videos por fila para aprovechar el espacio */
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 599px) {
+  .mini-sidebar {
+    display: none; /* Esconde el menú lateral en celulares */
+  }
+  
+  .content-area {
+    padding: 0 12px; /* Reduce los márgenes laterales para ganar espacio en el celular */
+  }
+}
+
+/* --- TARJETA DE VIDEO --- */
+.video-card {
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+}
+
+/* La imagen principal */
+.thumbnail-container {
+  position: relative;
+  width: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+  aspect-ratio: 16 / 9; /* Fuerza la proporción panorámica clásica de YouTube */
+}
+
+.thumbnail {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: border-radius 0.2s ease;
+}
+
+/* El cuadrito negro del tiempo en la esquina */
+.video-duration {
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  font-size: 12px;
+  font-weight: 500;
+  padding: 3px 4px;
+  border-radius: 4px;
+}
+
+/* Al pasar el mouse, los bordes de la miniatura se ponen cuadrados como en YT */
+.video-card:hover .thumbnail {
+  border-radius: 0;
+}
+
+/* --- DETALLES DEL VIDEO (Abajo de la miniatura) --- */
+.video-details {
+  display: flex;
+  margin-top: 12px;
+  gap: 12px;
+}
+
+.channel-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.video-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.video-title {
+  color: var(--text-main);
+  font-size: 16px;
+  font-weight: 500;
+  margin: 0 0 4px 0;
+  /* Esto hace que el título se corte con "..." si ocupa más de 2 líneas */
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  line-height: 1.4;
+}
+
+.channel-name, .video-stats {
+  color: #aaaaaa;
+  font-size: 14px;
+  margin: 0;
+  margin-bottom: 2px;
+}
+
+.channel-name:hover {
+  color: var(--text-main);
+}

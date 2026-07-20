@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Animación de Párrafo</title>
+  <style>
+    
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      background-color: #f4f4f9;
+      font-family: system-ui, -apple-system, sans-serif;
+    }
+
+    
+    .parrafo-animado {
+      text-align: center;
+      
+      animation: texto 7s infinite ease-in-out;
+    }
+
+    
+    @keyframes texto {
+      0% {
+        font-size: 1rem;    
+        font-weight: 300;   
+      }
+      50% {
+        font-size: 2.5rem;                  
+        font-weight: 900;   
+      }
+      100% {
+        font-size: 1rem;    
+        font-weight: 300;   
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <p class="parrafo-animado">
+    HOlaaaa
+  </p>
+
+</body>
+</html>

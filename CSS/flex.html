@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    *{
+      margin: 0;
+      padding: 0;
+    }
+    .centrar{
+      display: flex;
+      flex-direction: column;
+      /*Maneja el eje primario del elemento
+      Puedes usar start(inicio), end(final) y center(centrado)
+      */
+        justify-content:center ;
+        /*Maneja el eje secundario*/
+        align-items: center;
+        gap: 20xp;
+        background-color: darkgreen;
+        height: 100vh;
+        color: aliceblue;
+        /*width: 100vw;
+          vh = viewport height (alto del navegador)
+          vw = viewport width (ancho del navegador)
+          */
+    }
+  </style>
+</head>
+<body>
+  <section class="centrar">
+    <h1>Este es un titulo</h1>
+    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. 
+      Voluptate non aliquid possimus eveniet corporis saepe quo quisquam 
+      nisi, labore repellendus, vel ad consequuntur obcaecati recusandae ab 
+      excepturi necessitatibus adipisci iste?
+    </p>
+    <button>presioname </button>
+  </section>
+</body>
+</html>
