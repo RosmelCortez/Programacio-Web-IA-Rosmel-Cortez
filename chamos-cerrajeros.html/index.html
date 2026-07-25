@@ -1,0 +1,500 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Los Chamos Cerrajeros - Caracas</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              "brand-yellow": "#FFE600", // El amarillo exacto de la marca
+              "brand-green": "#25D366", // El verde de WhatsApp
+            },
+          },
+        },
+      };
+    </script>
+    <!-- Font Awesome para los iconos -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <!-- Librería AOS para animaciones al hacer scroll -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+    <style>
+      /* Fondo original iluminado con degradado focalizado tras el texto */
+      .hero-bg {
+        background-color: #000;
+        background-image: 
+          linear-gradient(to right, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.45) 55%, rgba(0, 0, 0, 0.1) 100%),
+          url("./fondo2degradado.png");
+        background-size: cover;
+        background-position: center center;
+        background-repeat: no-repeat;
+      }
+
+      @media (min-width: 768px) {
+        .hero-bg {
+          background-image: 
+            linear-gradient(to right, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.5) 45%, rgba(0, 0, 0, 0) 80%),
+            url("./fondo2degradado.png");
+          background-position: center right;
+        }
+      }
+    </style>
+  </head>
+  <body class="bg-black text-white font-sans flex flex-col min-h-screen relative">
+
+    <!-- ========================================== -->
+    <!-- MODAL POP-UP DE BIENVENIDA (EMERGENCIA)   -->
+    <!-- ========================================== -->
+    <div
+      id="welcomeModal"
+      class="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-md p-4 transition-opacity duration-300"
+    >
+      <div
+        class="bg-zinc-950 border-2 border-brand-yellow/80 rounded-2xl p-6 md:p-8 max-w-md w-full text-center shadow-2xl relative"
+      >
+        <!-- Íconos de Sirena / Alerta -->
+        <div class="flex justify-center items-center gap-3 text-3xl mb-3">
+          <span>🚨</span>
+          <h2 class="text-2xl md:text-3xl font-extrabold text-brand-yellow">
+            Servicio de Cerrajería de Emergencia
+          </h2>
+          <span>🚨</span>
+        </div>
+
+        <div class="w-16 h-1 bg-brand-yellow mx-auto mb-4 rounded-full"></div>
+
+        <p class="text-gray-200 text-sm md:text-base mb-6 leading-relaxed">
+          Estamos disponibles las 24 horas del día, los 7 días de la semana. ¡No dude en contactarnos!
+        </p>
+
+        <!-- Botones de Acción -->
+        <div class="flex flex-col gap-3">
+          <a
+            href="https://wa.me/584124811270?text=Hola,%20necesito%20un%20servicio%20de%20cerrajería%20de%20emergencia"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="bg-brand-green text-white font-bold py-3.5 px-6 rounded-xl text-base flex items-center justify-center gap-2 hover:bg-green-600 hover:scale-105 transition shadow-lg shadow-green-950/50"
+          >
+            <i class="fab fa-whatsapp text-2xl"></i>
+            <span>Contactar por WhatsApp</span>
+          </a>
+
+          <button
+            id="closeModalBtn"
+            class="bg-zinc-800 text-gray-300 hover:text-white font-semibold py-2 px-6 rounded-xl text-sm hover:bg-zinc-700 transition"
+          >
+            Cerrar
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- TOP BAR (Barra Superior Redes y Ubicación) -->
+    <div
+      class="w-full bg-[#0d0d0d] border-b border-gray-800/80 text-gray-300 text-xs py-2"
+    >
+      <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
+        <!-- Lado Izquierdo: Ubicación y Contacto -->
+        <div class="flex items-center gap-6">
+          <span class="flex items-center gap-2 font-medium tracking-wide">
+            <i class="fas fa-map-marker-alt text-brand-yellow"></i>
+            <span>CARACAS, VENEZUELA</span>
+          </span>
+          <a
+            href="tel:+584124811270"
+            class="hidden sm:flex items-center gap-2 hover:text-brand-yellow transition font-semibold"
+          >
+            <i class="fas fa-phone-alt text-brand-yellow"></i>
+            <span>0412-4811270</span>
+          </a>
+        </div>
+
+        <!-- Lado Derecho: Iconos de Redes Sociales -->
+        <div class="flex items-center gap-2.5">
+          <span
+            class="text-gray-400 font-medium hidden md:inline-block text-[11px] uppercase tracking-wider mr-1"
+            >Síguenos:</span
+          >
+
+          <a
+            href="https://www.instagram.com/cerrajeria.jeov/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="w-7 h-7 rounded-full bg-zinc-900 border border-zinc-800 flex items-center justify-center text-gray-300 hover:text-black hover:bg-brand-yellow hover:border-brand-yellow transition-all duration-200"
+            aria-label="Instagram"
+          >
+            <i class="fab fa-instagram text-xs"></i>
+          </a>
+          <a
+            href="https://www.tiktok.com/@cerrajeria.jeov?_r=1&_t=ZS-98Jcp6eTVvp"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="w-7 h-7 rounded-full bg-zinc-900 border border-zinc-800 flex items-center justify-center text-gray-300 hover:text-black hover:bg-brand-yellow hover:border-brand-yellow transition-all duration-200"
+            aria-label="TikTok"
+          >
+            <i class="fab fa-tiktok text-xs"></i>
+          </a>
+          <a
+            href="#"
+            class="w-7 h-7 rounded-full bg-zinc-900 border border-zinc-800 flex items-center justify-center text-gray-300 hover:text-black hover:bg-brand-yellow hover:border-brand-yellow transition-all duration-200"
+            aria-label="Facebook"
+          >
+            <i class="fab fa-facebook-f text-xs"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- BARRA DE NAVEGACIÓN PRINCIPAL -->
+    <header
+      class="w-full border-b border-gray-800 bg-black/90 backdrop-blur-md sticky top-0 z-40"
+    >
+      <nav
+        class="max-w-7xl mx-auto px-6 py-3.5 flex justify-between items-center"
+      >
+        <!-- Logo a la Izquierda -->
+        <a href="#" class="flex items-center gap-2 transition hover:opacity-90">
+          <img src="./logo.jpeg" alt="JEOV Logo" class="h-12 w-auto" />
+        </a>
+
+        <!-- Texto Central -->
+        <div
+          class="flex items-center gap-2 text-brand-yellow font-black text-sm md:text-base tracking-wider uppercase"
+        >
+          <i class="fas fa-key text-xs"></i>
+          <span>LOS CHAMOS CERRAJEROS</span>
+        </div>
+
+        <!-- Botón Contáctanos a la Derecha -->
+        <a
+          href="https://wa.me/584124811270?text=Hola,%20necesito%20un%20servicio%20de%20cerrajería"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="bg-brand-yellow text-black px-4 sm:px-5 py-2 sm:py-2.5 rounded-full font-bold text-xs sm:text-sm flex items-center gap-2 transition hover:bg-white hover:scale-105 shadow-md shadow-yellow-500/10"
+        >
+          <i class="fab fa-whatsapp text-base sm:text-lg"></i>
+          <span>Contáctanos</span>
+        </a>
+      </nav>
+    </header>
+
+    <!-- SECCIÓN HÉROE (Contenido Principal) -->
+    <main class="hero-bg flex items-center min-h-[85vh] py-16 md:py-28">
+      <div
+        class="max-w-7xl mx-auto px-6 w-full flex flex-col items-start text-left relative z-10"
+      >
+        <!-- Etiqueta de Servicio -->
+        <div
+          class="bg-brand-yellow text-black font-bold text-[11px] sm:text-xs px-3.5 py-1.5 rounded-full flex items-center gap-2 mb-6 shadow-lg uppercase tracking-wider"
+        >
+          <i class="far fa-clock"></i>
+          <span>SERVICIO 24 HORAS DISPONIBLES</span>
+        </div>
+
+        <!-- Título Principal -->
+        <h1
+          class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black leading-tight max-w-4xl mb-4 tracking-tight drop-shadow-lg"
+        >
+          ¿NECESITAS UN CERRAJERO DE EMERGENCIA EN CARACAS?
+          <span class="block text-brand-yellow mt-1 drop-shadow">LLEGAMOS AL INSTANTE</span>
+        </h1>
+
+        <!-- Subtítulo -->
+        <p class="text-gray-100 text-base md:text-xl max-w-2xl mb-8 font-medium leading-relaxed drop-shadow">
+          Estamos disponibles las 24 horas del día, los 7 días de la semana. ¡No
+          dude en contactarnos!
+        </p>
+
+        <!-- Botón de Acción -->
+        <a
+          href="https://wa.me/584124811270?text=Hola,%20necesito%20un%20servicio%20de%20cerrajería"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="w-full sm:w-auto justify-center bg-brand-green text-white px-7 py-3.5 rounded-xl font-bold text-base md:text-lg flex items-center gap-3 transition hover:scale-105 hover:bg-green-600 shadow-xl shadow-green-950/40"
+        >
+          <i class="fab fa-whatsapp text-2xl"></i>
+          <span>Solicitar Cerrajero Ya</span>
+        </a>
+      </div>
+    </main>
+
+    <!-- SECCIÓN DE SERVICIOS -->
+    <section
+      id="servicios"
+      class="relative w-full bg-black py-12 px-6 border-t border-zinc-900 overflow-hidden"
+    >
+      <!-- FONDO DE ESFERA RED TECH -->
+      <div
+        class="absolute inset-0 opacity-25 pointer-events-none flex items-center justify-center overflow-hidden"
+      >
+        <img
+          src="https://starlink.com/assets-new/images/landing/illustrations/illustration_08.webp"
+          alt="Fondo Esfera Starlink"
+          class="w-auto h-[130%] max-w-none object-contain transform scale-125 transition-transform duration-300"
+        />
+      </div>
+
+      <div class="max-w-6xl mx-auto relative z-10">
+        <!-- Título de la Sección -->
+        <div class="text-center mb-8">
+          <h2
+            class="text-2xl md:text-3xl font-extrabold text-white tracking-wide uppercase"
+          >
+            Nuestros <span class="text-brand-yellow">Servicios</span>
+          </h2>
+          <div
+            class="w-12 h-0.5 bg-brand-yellow mx-auto mt-2 rounded-full opacity-80"
+          ></div>
+        </div>
+
+        <!-- Grid de Tarjetas -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+          <!-- TARJETA 1: CERRAJERÍA RESIDENCIAL -->
+          <div
+            class="bg-zinc-950/80 border border-zinc-800 backdrop-blur-sm rounded-xl p-6 flex flex-col justify-between hover:border-brand-yellow/40 transition duration-300"
+          >
+            <div>
+              <h3
+                class="text-xl font-bold text-white mb-3 flex items-center gap-3"
+              >
+                <i class="fas fa-home text-brand-yellow"></i>
+                Cerrajería Residencial
+              </h3>
+              <p class="text-gray-400 text-xs md:text-sm leading-relaxed mb-5">
+                Soluciones rápidas y confiables para la seguridad de tu casa o
+                departamento. Realizamos aperturas limpias de puertas trabadas,
+                duplicados al instante e instalación profesional de cerraduras
+                de alta seguridad y bancarias (CISA, Mul-T-Lock, Spiderlock,
+                Masterlock).
+              </p>
+
+              <ul class="space-y-2 mb-6 text-xs md:text-sm text-gray-300">
+                <li class="flex items-center gap-2.5">
+                  <i class="fas fa-check text-brand-yellow text-xs"></i>
+                  <span>Apertura de emergencia</span>
+                </li>
+                <li class="flex items-center gap-2.5">
+                  <i class="fas fa-check text-brand-yellow text-xs"></i>
+                  <span>Instalación y reparación de cerraduras</span>
+                </li>
+                <li class="flex items-center gap-2.5">
+                  <i class="fas fa-check text-brand-yellow text-xs"></i>
+                  <span>Instalación de cilindros</span>
+                </li>
+              </ul>
+            </div>
+
+            <a
+              href="https://wa.me/584124811270?text=Hola,%20necesito%20servicio%20de%20Cerrajería%20Residencial"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="w-full bg-brand-yellow text-black font-bold py-2.5 px-5 rounded-lg text-center hover:bg-white transition duration-200 text-sm flex items-center justify-center gap-2"
+            >
+              <i class="fab fa-whatsapp text-base"></i>
+              <span>Contáctanos</span>
+            </a>
+          </div>
+
+          <!-- TARJETA 2: CERRAJERÍA AUTOMOTRIZ -->
+          <div
+            class="bg-zinc-950/80 border border-zinc-800 backdrop-blur-sm rounded-xl p-6 flex flex-col justify-between hover:border-brand-yellow/40 transition duration-300"
+          >
+            <div>
+              <h3
+                class="text-xl font-bold text-white mb-3 flex items-center gap-3"
+              >
+                <i class="fas fa-car text-brand-yellow"></i>
+                Cerrajería Automotriz
+              </h3>
+              <p class="text-gray-400 text-xs md:text-sm leading-relaxed mb-5">
+                Atención especializada para cualquier marca y modelo. Realizamos
+                aperturas de emergencia las 24 horas —incluyendo vehículos
+                blindados— sin generar rayones ni daños, además de reparación,
+                duplicado y programación experta de llaves con chip o mandos a
+                distancia.
+              </p>
+
+              <ul class="space-y-2 mb-6 text-xs md:text-sm text-gray-300">
+                <li class="flex items-center gap-2.5">
+                  <i class="fas fa-check text-brand-yellow text-xs"></i>
+                  <span>Llaves con chip</span>
+                </li>
+                <li class="flex items-center gap-2.5">
+                  <i class="fas fa-check text-brand-yellow text-xs"></i>
+                  <span>Apertura de autos</span>
+                </li>
+                <li class="flex items-center gap-2.5">
+                  <i class="fas fa-check text-brand-yellow text-xs"></i>
+                  <span>Reparación de cilindros</span>
+                </li>
+                <li class="flex items-center gap-2.5">
+                  <i class="fas fa-check text-brand-yellow text-xs"></i>
+                  <span>Fabricación de llave por extravío</span>
+                </li>
+              </ul>
+            </div>
+
+            <a
+              href="https://wa.me/584124811270?text=Hola,%20necesito%20servicio%20de%20Cerrajería%20Automotriz"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="w-full bg-brand-yellow text-black font-bold py-2.5 px-5 rounded-lg text-center hover:bg-white transition duration-200 text-sm flex items-center justify-center gap-2"
+            >
+              <i class="fab fa-whatsapp text-base"></i>
+              <span>Contáctanos</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN DE TRABAJOS REALIZADOS -->
+    <section
+      class="relative w-full py-20 px-6 overflow-hidden bg-black text-white border-t border-zinc-900"
+    >
+      <!-- Imagen de Fondo -->
+      <div class="absolute inset-0 z-0 pointer-events-none">
+        <img
+          src="./seccion3.png"
+          alt="Fondo Cerrajería"
+          class="w-full h-full object-cover opacity-65"
+        />
+        <div
+          class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/20 to-black/60"
+        ></div>
+      </div>
+
+      <!-- Contenido de la Galería -->
+      <div class="relative z-10 max-w-6xl mx-auto">
+        <!-- Título de Trabajos -->
+        <div class="text-center mb-12" data-aos="fade-up">
+          <h2
+            class="text-3xl md:text-5xl font-extrabold tracking-wide uppercase drop-shadow-md"
+          >
+            Trabajos Reales,
+            <span class="text-brand-yellow">Confianza Garantizada</span>
+          </h2>
+          <p
+            class="text-gray-200 text-sm md:text-base max-w-2xl mx-auto mt-4 leading-relaxed font-medium drop-shadow-sm"
+          >
+            No usamos fotos de internet. Aquí puedes ver nuestro trabajo en
+            acción, atendiendo personalmente a nuestros clientes en Caracas con
+            total transparencia y herramientas profesionales.
+          </p>
+          <div class="w-16 h-1 bg-brand-yellow mx-auto mt-4 rounded-full"></div>
+        </div>
+
+        <!-- Grid de Imágenes de Trabajos -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <!-- FOTO 1 -->
+          <div
+            class="bg-zinc-900/90 border border-zinc-800 rounded-2xl overflow-hidden shadow-2xl backdrop-blur-md flex flex-col group hover:border-zinc-700 transition duration-300"
+            data-aos="fade-up"
+            data-aos-delay="100"
+          >
+            <div class="overflow-hidden h-64">
+              <img
+                src="./trabajo2.jpeg"
+                alt="Apertura Residencial"
+                class="w-full h-full object-cover group-hover:scale-105 transition duration-500"
+              />
+            </div>
+            <div class="p-6">
+              <h3 class="text-lg font-bold text-white mb-2">
+                Apertura Residencial Técnica
+              </h3>
+              <p class="text-gray-400 text-xs leading-relaxed">
+                Apertura y reparación directa de cerraduras residenciales sin
+                dañar puertas o rejas.
+              </p>
+            </div>
+          </div>
+
+          <!-- FOTO 2 -->
+          <div
+            class="bg-zinc-900/90 border border-zinc-800 rounded-2xl overflow-hidden shadow-2xl backdrop-blur-md flex flex-col group hover:border-zinc-700 transition duration-300"
+            data-aos="fade-up"
+            data-aos-delay="200"
+          >
+            <div class="overflow-hidden h-64">
+              <img
+                src="./trabajo1.jpeg"
+                alt="Apertura Automotriz de Emergencia"
+                class="w-full h-full object-cover group-hover:scale-105 transition duration-500"
+              />
+            </div>
+            <div class="p-6">
+              <h3 class="text-lg font-bold text-white mb-2">
+                Apertura de Vehículos
+              </h3>
+              <p class="text-gray-400 text-xs leading-relaxed">
+                Herramientas profesionales para abrir autos en el sitio
+                rápidamente y sin rayones.
+              </p>
+            </div>
+          </div>
+
+          <!-- FOTO 3 -->
+          <div
+            class="bg-zinc-900/90 border border-zinc-800 rounded-2xl overflow-hidden shadow-2xl backdrop-blur-md flex flex-col group hover:border-zinc-700 transition duration-300"
+            data-aos="fade-up"
+            data-aos-delay="300"
+          >
+            <div class="overflow-hidden h-64">
+              <img
+                src="./trabajo3.jpeg"
+                alt="Cambio e Instalación de Cilindros"
+                class="w-full h-full object-cover group-hover:scale-105 transition duration-500"
+              />
+            </div>
+            <div class="p-6">
+              <h3 class="text-lg font-bold text-white mb-2">
+                Instalación y Mantenimiento
+              </h3>
+              <p class="text-gray-400 text-xs leading-relaxed">
+                Sustitución inmediata de cilindros trabados o desgastados para
+                máxima seguridad.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ICONO FLOTANTE DE WHATSAPP -->
+    <a
+      href="https://wa.me/584124811270?text=Hola,%20necesito%20un%20servicio%20de%20cerrajería"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="fixed bottom-5 right-5 sm:bottom-6 sm:right-6 bg-brand-green text-white w-12 h-12 sm:w-14 sm:h-14 rounded-full shadow-2xl flex items-center justify-center transition hover:scale-110 z-30"
+      aria-label="WhatsApp Flotante"
+    >
+      <i class="fab fa-whatsapp text-2xl sm:text-3xl"></i>
+    </a>
+
+    <!-- Carga de Scripts para AOS y Modal -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+      AOS.init({
+        duration: 800,
+        once: true,
+      });
+
+      // Lógica para cerrar el Modal emergente
+      const modal = document.getElementById("welcomeModal");
+      const closeBtn = document.getElementById("closeModalBtn");
+
+      closeBtn.addEventListener("click", () => {
+        modal.classList.add("hidden");
+      });
+    </script>
+  </body>
+</html>
