@@ -1,0 +1,748 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cinex - Rediseño</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      body {
+        font-family: "Inter", sans-serif;
+      }
+    </style>
+  </head>
+  <body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col">
+    <!-- 1. NAVBAR / HEADER -->
+
+    <header
+      class="sticky top-0 z-50 bg-blue-950/95 backdrop-blur-md border-b border-blue-900/60 shadow-lg"
+    >
+      <div
+        class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4"
+      >
+        <!-- Logo Oficial Cinex Style -->
+        <a href="#" class="flex items-center gap-2 group">
+          <img
+            src="https://www.cinex.com.ve/assets/images/xlogo.png.pagespeed.ic.g7fFsLLvP4.webp"
+            alt="Logo Cinex"
+            class="h-10 w-auto object-contain transition group-hover:scale-105"
+          />
+        </a>
+
+        <!-- Menú  -->
+        <nav
+          class="hidden lg:flex items-center gap-6 font-semibold text-xs uppercase tracking-wider text-slate-200"
+        >
+          <a
+            href="#"
+            class="text-yellow-400 font-bold border-b-2 border-yellow-400 pb-1"
+            >Cartelera</a
+          >
+          <a href="#" class="hover:text-yellow-400 transition pb-1">Dulcería</a>
+          <a href="#" class="hover:text-yellow-400 transition pb-1">Estrenos</a>
+          <a href="#" class="hover:text-yellow-400 transition pb-1">Cines</a>
+
+          <!-- Comercialización -->
+          <div class="relative group cursor-pointer py-1">
+            <span
+              class="hover:text-yellow-400 transition flex items-center gap-1"
+            >
+              Comercialización
+              <i class="fa-solid fa-chevron-down text-[10px]"></i>
+            </span>
+          </div>
+
+          <a href="#" class="hover:text-yellow-400 transition pb-1"
+            >Contáctanos</a
+          >
+
+          <!-- Badge Cinexclusivo -->
+          <a
+            href="#"
+            class="font-black px-3 py-1.5 rounded-md hover:brightness-110 transition flex items-center gap-1 shadow"
+          >
+            <img
+              src="data:image/webp;base64,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"
+              alt="Cine Exclusivo"
+            />
+          </a>
+        </nav>
+
+        <!-- Botón Ingresar -->
+        <div class="hidden sm:flex items-center gap-4">
+          <a
+            href="#"
+            class="bg-blue-900 hover:bg-blue-800 text-yellow-400 border border-blue-700/60 font-bold text-xs uppercase tracking-wider px-4 py-2.5 rounded-lg transition shadow-md flex items-center gap-1.5"
+          >
+            <i class="fa-solid fa-user"></i> Ingresa
+          </a>
+        </div>
+
+        <!-- Menú Mobile -->
+        <button
+          class="lg:hidden text-slate-200 text-2xl focus:outline-none hover:text-yellow-400 transition"
+          aria-label="Abrir Menú"
+        >
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+    </header>
+
+    <!-- 2. BANNER PRINCIPAL    -->
+
+    <section
+      class="relative w-full h-[550px] md:h-[620px] flex items-end group"
+    >
+      <!-- Imagen de Fondo -->
+      <div class="absolute inset-0 z-0">
+        <img
+          src="https://www.cinex.com.ve/assets/images/slider/xodiseaaweb.jpg.pagespeed.ic.4d0-nWwZ2m.webp"
+          alt="La Odisea Banner"
+          class="w-full h-full object-cover"
+        />
+        <!-- Gradiantes para integración de color -->
+        <div
+          class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-blue-950/40"
+        ></div>
+        <div
+          class="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-950/60 to-transparent"
+        ></div>
+      </div>
+
+      <!-- Controles de Navegación -->
+      <button
+        class="absolute left-4 top-1/2 -translate-y-1/2 z-20 text-white/50 hover:text-yellow-400 text-3xl transition p-2"
+        aria-label="Anterior"
+      >
+        <i class="fa-solid fa-chevron-left"></i>
+      </button>
+      <button
+        class="absolute right-4 top-1/2 -translate-y-1/2 z-20 text-white/50 hover:text-yellow-400 text-3xl transition p-2"
+        aria-label="Siguiente"
+      >
+        <i class="fa-solid fa-chevron-right"></i>
+      </button>
+
+      <!-- Contenido del Banner -->
+      <div
+        class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16 w-full"
+      >
+        <div class="max-w-2xl space-y-4">
+          <p
+            class="text-yellow-400 font-bold uppercase tracking-widest text-xs"
+          >
+            Una película de Christopher Nolan
+          </p>
+
+          <h1
+            class="text-4xl md:text-6xl font-black tracking-tight text-white uppercase drop-shadow-lg"
+          >
+            LA ODISEA
+          </h1>
+
+          <div class="flex items-center gap-3">
+            <span
+              class="bg-blue-900/80 text-blue-200 border border-blue-700/50 text-xs font-semibold px-2.5 py-1 rounded"
+              >2D / 3D / 4DX</span
+            >
+            <span class="text-slate-300 text-xs font-medium">
+              <i class="fa-regular fa-clock text-yellow-400 mr-1"></i> 165 min
+            </span>
+          </div>
+
+          <p
+            class="text-slate-300 text-sm md:text-base line-clamp-3 font-normal leading-relaxed"
+          >
+            Una épica aventura mitológica reimaginada a través de la visión
+            cinematográfica de Christopher Nolan. Vive la experiencia inmersiva
+            en la pantalla grande de Cinex.
+          </p>
+
+          <!-- Botones de Acción -->
+          <div class="flex flex-wrap items-center gap-4 pt-2">
+            <a
+              href="#"
+              class="bg-yellow-400 hover:bg-yellow-500 text-blue-950 font-black px-6 py-3 rounded-xl flex items-center gap-2 transition shadow-lg shadow-yellow-400/20 text-sm uppercase tracking-wide"
+            >
+              <i class="fa-solid fa-ticket"></i>
+              Comprar Entradas
+            </a>
+            <button
+              class="bg-blue-950/80 hover:bg-blue-900 text-white border border-blue-800 font-semibold px-5 py-3 rounded-xl flex items-center gap-2 transition text-sm"
+            >
+              <i class="fa-solid fa-circle-play"></i>
+              Ver Trailer
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. SECCIÓN TOP 5  -->
+
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 w-full">
+      <div class="flex items-center justify-between mb-6">
+        <h2
+          class="text-2xl md:text-3xl font-black tracking-tight text-white flex items-center gap-2"
+        >
+          TOP 5
+          <span class="text-yellow-400 text-sm font-normal"
+            >| Más vistas esta semana</span
+          >
+        </h2>
+      </div>
+
+      <!-- Grid de Tarjetas del TOP 5 -->
+      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
+        <!-- Película 1 -->
+        <div
+          class="group relative rounded-xl overflow-hidden bg-slate-900 border border-slate-800 hover:border-yellow-400/50 transition cursor-pointer shadow-lg"
+        >
+          <div class="aspect-[2/3] w-full overflow-hidden relative">
+            <img
+              src="https://www.cinex.com.ve/assets/images/posters/x88a6bc81ceba2905a66b494e950bc281.jpg.pagespeed.ic.KnFzaDX9GS.webp"
+              alt="Poster Minions y Monstruos"
+              class="w-full h-full object-cover group-hover:scale-105 transition duration-300"
+            />
+            <span
+              class="absolute top-2 left-2 bg-yellow-400 text-blue-950 font-black text-lg w-8 h-8 rounded-lg flex items-center justify-center shadow"
+              >1</span
+            >
+            <div
+              class="absolute inset-0 bg-blue-950/60 opacity-0 group-hover:opacity-100 transition flex items-center justify-center"
+            >
+              <i class="fa-solid fa-circle-play text-yellow-400 text-4xl"></i>
+            </div>
+          </div>
+          <div class="p-3">
+            <h3 class="font-bold text-sm text-white truncate">
+              MINIONS Y MONSTRUOS
+            </h3>
+            <p class="text-xs text-slate-400">Animación / Infantil</p>
+          </div>
+        </div>
+
+        <!-- Película 2 -->
+        <div
+          class="group relative rounded-xl overflow-hidden bg-slate-900 border border-slate-800 hover:border-yellow-400/50 transition cursor-pointer shadow-lg"
+        >
+          <div class="aspect-[2/3] w-full overflow-hidden relative">
+            <img
+              src="https://www.cinex.com.ve/assets/images/posters/x96fd9f94a33c9df85c6c1f934680f5bc.jpg.pagespeed.ic.HO4ZgAO1NG.webp"
+              alt="Poster La Odisea"
+              class="w-full h-full object-cover group-hover:scale-105 transition duration-300"
+            />
+            <span
+              class="absolute top-2 left-2 bg-yellow-400 text-blue-950 font-black text-lg w-8 h-8 rounded-lg flex items-center justify-center shadow"
+              >2</span
+            >
+            <div
+              class="absolute inset-0 bg-blue-950/60 opacity-0 group-hover:opacity-100 transition flex items-center justify-center"
+            >
+              <i class="fa-solid fa-circle-play text-yellow-400 text-4xl"></i>
+            </div>
+          </div>
+          <div class="p-3">
+            <h3 class="font-bold text-sm text-white truncate">LA ODISEA</h3>
+            <p class="text-xs text-slate-400">Acción / Aventura</p>
+          </div>
+        </div>
+
+        <!-- Película 3 -->
+        <div
+          class="group relative rounded-xl overflow-hidden bg-slate-900 border border-slate-800 hover:border-yellow-400/50 transition cursor-pointer shadow-lg"
+        >
+          <div class="aspect-[2/3] w-full overflow-hidden relative">
+            <img
+              src="https://www.cinex.com.ve/assets/images/posters/xa793a0e117f690602f0a4fe3392c2790.jpg.pagespeed.ic.sskvX7I3wq.webp"
+              alt="Poster Evil Dead"
+              class="w-full h-full object-cover group-hover:scale-105 transition duration-300"
+            />
+            <span
+              class="absolute top-2 left-2 bg-yellow-400 text-blue-950 font-black text-lg w-8 h-8 rounded-lg flex items-center justify-center shadow"
+              >3</span
+            >
+            <div
+              class="absolute inset-0 bg-blue-950/60 opacity-0 group-hover:opacity-100 transition flex items-center justify-center"
+            >
+              <i class="fa-solid fa-circle-play text-yellow-400 text-4xl"></i>
+            </div>
+          </div>
+          <div class="p-3">
+            <h3 class="font-bold text-sm text-white truncate">
+              EVIL DEAD EN LLAMAS
+            </h3>
+            <p class="text-xs text-slate-400">Terror / Suspenso</p>
+          </div>
+        </div>
+
+        <!-- Película 4 -->
+        <div
+          class="group relative rounded-xl overflow-hidden bg-slate-900 border border-slate-800 hover:border-yellow-400/50 transition cursor-pointer shadow-lg"
+        >
+          <div class="aspect-[2/3] w-full overflow-hidden relative">
+            <img
+              src="https://www.cinex.com.ve/assets/images/posters/xedd5cddc9d89f53ffb3305f8b2668572.jpg.pagespeed.ic.AGiKTAfgKj.webp"
+              alt="Poster Moana"
+              class="w-full h-full object-cover group-hover:scale-105 transition duration-300"
+            />
+            <span
+              class="absolute top-2 left-2 bg-yellow-400 text-blue-950 font-black text-lg w-8 h-8 rounded-lg flex items-center justify-center shadow"
+              >4</span
+            >
+            <div
+              class="absolute inset-0 bg-blue-950/60 opacity-0 group-hover:opacity-100 transition flex items-center justify-center"
+            >
+              <i class="fa-solid fa-circle-play text-yellow-400 text-4xl"></i>
+            </div>
+          </div>
+          <div class="p-3">
+            <h3 class="font-bold text-sm text-white truncate">MOANA 2026</h3>
+            <p class="text-xs text-slate-400">Live action / Aventura</p>
+          </div>
+        </div>
+
+        <!-- Película 5 -->
+        <div
+          class="group relative rounded-xl overflow-hidden bg-slate-900 border border-slate-800 hover:border-yellow-400/50 transition cursor-pointer shadow-lg"
+        >
+          <div class="aspect-[2/3] w-full overflow-hidden relative">
+            <img
+              src="https://www.cinex.com.ve/assets/images/posters/x954951f20c65fe3d130e9f57372467ee.jpg.pagespeed.ic.lJBp4HWiXH.webp"
+              alt="Poster Toy Story 5"
+              class="w-full h-full object-cover group-hover:scale-105 transition duration-300"
+            />
+            <span
+              class="absolute top-2 left-2 bg-yellow-400 text-blue-950 font-black text-lg w-8 h-8 rounded-lg flex items-center justify-center shadow"
+              >5</span
+            >
+            <div
+              class="absolute inset-0 bg-blue-950/60 opacity-0 group-hover:opacity-100 transition flex items-center justify-center"
+            >
+              <i class="fa-solid fa-circle-play text-yellow-400 text-4xl"></i>
+            </div>
+          </div>
+          <div class="p-3">
+            <h3 class="font-bold text-sm text-white truncate">TOY STORY 5</h3>
+            <p class="text-xs text-slate-400">Aventura / Infantil</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. SECCIÓN CARTELERA     -->
+
+    <section
+      class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 w-full relative"
+    >
+      <!-- Título y Filtros de Formato -->
+      <div
+        class="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-8"
+      >
+        <h2
+          class="text-3xl md:text-4xl font-black tracking-wide text-white uppercase"
+        >
+          Cartelera
+        </h2>
+
+        <!-- Filtros 2D, 3D, VIP, 4DX -->
+        <div class="flex flex-wrap items-center gap-3">
+          <button
+            class="px-6 py-2 rounded-xl bg-slate-900 border border-slate-700 hover:border-yellow-400 text-white font-bold text-lg transition shadow hover:text-yellow-400"
+          >
+            2D
+          </button>
+          <button
+            class="px-6 py-2 rounded-xl bg-slate-900 border border-slate-700 hover:border-yellow-400 text-white font-bold text-lg transition shadow hover:text-yellow-400"
+          >
+            3D
+          </button>
+          <button
+            class="px-6 py-2 rounded-xl bg-slate-900 border border-slate-700 hover:border-yellow-400 text-white font-bold text-lg transition shadow hover:text-yellow-400"
+          >
+            VIP
+          </button>
+          <button
+            class="px-6 py-2 rounded-xl bg-slate-900 border border-slate-700 hover:border-yellow-400 text-white font-bold text-lg transition shadow hover:text-yellow-400"
+          >
+            4DX
+          </button>
+        </div>
+      </div>
+
+      <!-- Contenedor con Flechas de Navegación (Se removió la clase "group" de aquí) -->
+      <div class="relative">
+        <!-- Flecha Izquierda -->
+        <button
+          class="absolute -left-4 md:-left-6 top-1/2 -translate-y-1/2 z-30 bg-slate-900/80 hover:bg-yellow-400 text-white hover:text-blue-950 w-10 h-10 rounded-full flex items-center justify-center border border-slate-700 transition shadow-lg"
+          aria-label="Anterior"
+        >
+          <i class="fa-solid fa-chevron-left text-lg"></i>
+        </button>
+
+        <!-- Flecha Derecha -->
+        <button
+          class="absolute -right-4 md:-right-6 top-1/2 -translate-y-1/2 z-30 bg-slate-900/80 hover:bg-yellow-400 text-white hover:text-blue-950 w-10 h-10 rounded-full flex items-center justify-center border border-slate-700 transition shadow-lg"
+          aria-label="Siguiente"
+        >
+          <i class="fa-solid fa-chevron-right text-lg"></i>
+        </button>
+
+        <!-- Grid de Películas -->
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-5">
+          <!-- Card 1: Spiderman Un Nuevo Día -->
+          <div class="group flex flex-col cursor-pointer">
+            <div
+              class="relative aspect-[2/3] w-full rounded-2xl overflow-hidden bg-slate-900 border border-slate-800 group-hover:border-yellow-400 transition shadow-md"
+            >
+              <img
+                src="https://www.cinex.com.ve/assets/images/posters/xe53a055c7dff0b7728ac42c3b4677a11.jpg.pagespeed.ic.N2OTWbllrY.webp"
+                alt="Spiderman Un Nuevo Día"
+                class="w-full h-full object-cover group-hover:scale-105 transition duration-300"
+              />
+
+              <!-- Ribbon Diagonal PREVENTA -->
+              <div
+                class="absolute top-0 left-0 w-32 h-32 overflow-hidden pointer-events-none z-10"
+              >
+                <div
+                  class="bg-lime-500 text-slate-950 font-black text-[10px] uppercase py-1 text-center -rotate-45 -translate-x-8 translate-y-4 shadow-md w-36"
+                >
+                  Preventa
+                </div>
+              </div>
+
+              <!-- Overlay Hover Individual -->
+              <div
+                class="absolute inset-0 bg-slate-950/70 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center p-4 z-20"
+              >
+                <span
+                  class="bg-yellow-400 text-blue-950 font-black px-5 py-2.5 rounded-xl text-xs uppercase tracking-wider shadow-lg transform group-hover:scale-105 transition"
+                >
+                  Comprar
+                </span>
+              </div>
+            </div>
+            <h3
+              class="mt-3 text-xs md:text-sm font-bold text-center text-slate-200 uppercase tracking-wide group-hover:text-yellow-400 transition"
+            >
+              Spiderman Un Nuevo Día
+            </h3>
+          </div>
+
+          <!-- Card 2: Backrooms Versión Extendida -->
+          <div class="group flex flex-col cursor-pointer">
+            <div
+              class="relative aspect-[2/3] w-full rounded-2xl overflow-hidden bg-slate-900 border border-slate-800 group-hover:border-yellow-400 transition shadow-md"
+            >
+              <img
+                src="https://www.cinex.com.ve/assets/images/posters/x6ad0d54f2fe599cf96fbf827e0c748c7.jpg.pagespeed.ic.t4k7jvdKdU.webp"
+                alt="Backrooms Versión Extendida"
+                class="w-full h-full object-cover group-hover:scale-105 transition duration-300"
+              />
+
+              <!-- Ribbon Diagonal ESTRENO -->
+              <div
+                class="absolute top-0 left-0 w-36 h-36 overflow-hidden pointer-events-none z-10"
+              >
+                <div
+                  class="bg-blue-600 text-white font-black text-[9px] leading-tight uppercase py-1 text-center -rotate-45 -translate-x-9 translate-y-5 shadow-md w-40"
+                >
+                  Estreno<br /><span class="text-[8px] font-semibold"
+                    >Versión Extendida</span
+                  >
+                </div>
+              </div>
+
+              <!-- Overlay Hover Individual -->
+              <div
+                class="absolute inset-0 bg-slate-950/70 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center p-4 z-20"
+              >
+                <span
+                  class="bg-yellow-400 text-blue-950 font-black px-5 py-2.5 rounded-xl text-xs uppercase tracking-wider shadow-lg transform group-hover:scale-105 transition"
+                >
+                  Comprar
+                </span>
+              </div>
+            </div>
+            <h3
+              class="mt-3 text-xs md:text-sm font-bold text-center text-slate-200 uppercase tracking-wide group-hover:text-yellow-400 transition"
+            >
+              Backrooms Versión Extendida
+            </h3>
+          </div>
+
+          <!-- Card 3: La Odisea -->
+          <div class="group flex flex-col cursor-pointer">
+            <div
+              class="relative aspect-[2/3] w-full rounded-2xl overflow-hidden bg-slate-900 border border-slate-800 group-hover:border-yellow-400 transition shadow-md"
+            >
+              <img
+                src="https://www.cinex.com.ve/assets/images/posters/x96fd9f94a33c9df85c6c1f934680f5bc.jpg.pagespeed.ic.HO4ZgAO1NG.webp"
+                alt="La Odisea"
+                class="w-full h-full object-cover group-hover:scale-105 transition duration-300"
+              />
+
+              <!-- Overlay Hover Individual -->
+              <div
+                class="absolute inset-0 bg-slate-950/70 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center p-4 z-20"
+              >
+                <span
+                  class="bg-yellow-400 text-blue-950 font-black px-5 py-2.5 rounded-xl text-xs uppercase tracking-wider shadow-lg transform group-hover:scale-105 transition"
+                >
+                  Comprar
+                </span>
+              </div>
+            </div>
+            <h3
+              class="mt-3 text-xs md:text-sm font-bold text-center text-slate-200 uppercase tracking-wide group-hover:text-yellow-400 transition"
+            >
+              La Odisea
+            </h3>
+          </div>
+
+          <!-- Card 4: Moana 2026 -->
+          <div class="group flex flex-col cursor-pointer">
+            <div
+              class="relative aspect-[2/3] w-full rounded-2xl overflow-hidden bg-slate-900 border border-slate-800 group-hover:border-yellow-400 transition shadow-md"
+            >
+              <img
+                src="https://www.cinex.com.ve/assets/images/posters/xedd5cddc9d89f53ffb3305f8b2668572.jpg.pagespeed.ic.AGiKTAfgKj.webp"
+                alt="Moana 2026"
+                class="w-full h-full object-cover group-hover:scale-105 transition duration-300"
+              />
+
+              <!-- Overlay Hover Individual -->
+              <div
+                class="absolute inset-0 bg-slate-950/70 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center p-4 z-20"
+              >
+                <span
+                  class="bg-yellow-400 text-blue-950 font-black px-5 py-2.5 rounded-xl text-xs uppercase tracking-wider shadow-lg transform group-hover:scale-105 transition"
+                >
+                  Comprar
+                </span>
+              </div>
+            </div>
+            <h3
+              class="mt-3 text-xs md:text-sm font-bold text-center text-slate-200 uppercase tracking-wide group-hover:text-yellow-400 transition"
+            >
+              Moana 2026
+            </h3>
+          </div>
+
+          <!-- Card 5: Evil Dead en Llamas -->
+          <div class="group flex flex-col cursor-pointer">
+            <div
+              class="relative aspect-[2/3] w-full rounded-2xl overflow-hidden bg-slate-900 border border-slate-800 group-hover:border-yellow-400 transition shadow-md"
+            >
+              <img
+                src="https://www.cinex.com.ve/assets/images/posters/xa793a0e117f690602f0a4fe3392c2790.jpg.pagespeed.ic.sskvX7I3wq.webp"
+                alt="Evil Dead en Llamas"
+                class="w-full h-full object-cover group-hover:scale-105 transition duration-300"
+              />
+
+              <!-- Overlay Hover Individual -->
+              <div
+                class="absolute inset-0 bg-slate-950/70 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center p-4 z-20"
+              >
+                <span
+                  class="bg-yellow-400 text-blue-950 font-black px-5 py-2.5 rounded-xl text-xs uppercase tracking-wider shadow-lg transform group-hover:scale-105 transition"
+                >
+                  Comprar
+                </span>
+              </div>
+            </div>
+            <h3
+              class="mt-3 text-xs md:text-sm font-bold text-center text-slate-200 uppercase tracking-wide group-hover:text-yellow-400 transition"
+            >
+              Evil Dead en Llamas
+            </h3>
+          </div>
+        </div>
+      </div>
+
+      <!-- Botón Flotante Ir Arriba -->
+      <a
+        href="#"
+        class="fixed bottom-6 right-6 z-50 bg-blue-900 hover:bg-yellow-400 text-white hover:text-blue-950 p-3.5 rounded-full shadow-2xl transition border border-blue-700 flex items-center justify-center"
+        aria-label="Volver arriba"
+      >
+        <i class="fa-solid fa-chevron-up text-lg"></i>
+      </a>
+    </section>
+
+    <!-- 5. SECCIÓN FOOTER / PIE DE PÁGINA  -->
+
+    <footer class="relative w-full text-white bg-slate-950 overflow-hidden">
+      <!-- Imagen de Fondo con Overlay -->
+      <div class="absolute inset-0 z-0">
+        <img
+          src="https://www.cinex.com.ve/assets/images/cinemas/480x189x39.jpg.pagespeed.ic.FFBy-SNAvH.webp"
+          alt="Fondo Cinex"
+          class="w-full h-full object-cover object-center opacity-40"
+        />
+        <div
+          class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/70 to-slate-950/80"
+        ></div>
+      </div>
+
+      <!-- Contenido Principal del Footer -->
+      <div
+        class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-12"
+      >
+        <!-- Grid de Navegación y Secciones -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-8 mb-16">
+          <!-- Columna 1: Logo & Menú Principal -->
+          <div class="flex flex-col gap-4">
+            <a href="#" class="inline-block mb-2">
+              <!-- Logo Cinex en amarillo/azul -->
+              <img
+                src="https://www.cinex.com.ve/assets/images/xlogo.png.pagespeed.ic.g7fFsLLvP4.webp"
+                alt="Cinex Logo"
+                class="h-10 w-auto"
+              />
+            </a>
+            <nav class="flex flex-col gap-2 font-bold text-sm md:text-base">
+              <a href="#" class="hover:text-yellow-400 transition">Cartelera</a>
+              <a href="#" class="hover:text-yellow-400 transition">Cines</a>
+              <a href="#" class="hover:text-yellow-400 transition">Estrenos</a>
+              <a href="#" class="hover:text-yellow-400 transition">Noticias</a>
+            </nav>
+          </div>
+
+          <!-- Columna 2: Nosotros -->
+          <div class="flex flex-col gap-3">
+            <h3 class="text-xl font-bold tracking-wide mb-1 text-white">
+              Nosotros
+            </h3>
+            <nav
+              class="flex flex-col gap-2 text-sm md:text-base text-slate-200 font-medium"
+            >
+              <a href="#" class="hover:text-yellow-400 transition"
+                >Presencia y publicidad</a
+              >
+              <a href="#" class="hover:text-yellow-400 transition"
+                >Productos corporativos</a
+              >
+              <a href="#" class="hover:text-yellow-400 transition"
+                >Cinexclusivo</a
+              >
+              <a href="#" class="hover:text-yellow-400 transition"
+                >Contáctanos</a
+              >
+            </nav>
+          </div>
+
+          <!-- Columna 3: Redes Sociales -->
+          <div class="flex flex-col gap-4">
+            <h3 class="text-xl font-bold tracking-wide text-white">Síguenos</h3>
+            <p class="text-sm font-semibold text-slate-300">
+              En nuestras redes sociales
+            </p>
+
+            <!-- Iconos de Redes Sociales (FontAwesome) -->
+            <div class="flex items-center gap-4 text-xl">
+              <a
+                href="#"
+                class="w-9 h-9 rounded-full bg-slate-900/80 hover:bg-yellow-400 hover:text-blue-950 flex items-center justify-center transition border border-slate-700"
+              >
+                <i class="fa-brands fa-facebook-f"></i>
+              </a>
+              <a
+                href="#"
+                class="w-9 h-9 rounded-full bg-slate-900/80 hover:bg-yellow-400 hover:text-blue-950 flex items-center justify-center transition border border-slate-700"
+              >
+                <i class="fa-brands fa-x-twitter"></i>
+              </a>
+              <a
+                href="#"
+                class="w-9 h-9 rounded-full bg-slate-900/80 hover:bg-yellow-400 hover:text-blue-950 flex items-center justify-center transition border border-slate-700"
+              >
+                <i class="fa-brands fa-tiktok"></i>
+              </a>
+              <a
+                href="#"
+                class="w-9 h-9 rounded-full bg-slate-900/80 hover:bg-yellow-400 hover:text-blue-950 flex items-center justify-center transition border border-slate-700"
+              >
+                <i class="fa-brands fa-instagram"></i>
+              </a>
+              <a
+                href="#"
+                class="w-9 h-9 rounded-full bg-slate-900/80 hover:bg-yellow-400 hover:text-blue-950 flex items-center justify-center transition border border-slate-700"
+              >
+                <i class="fa-brands fa-threads"></i>
+              </a>
+              <a
+                href="#"
+                class="w-9 h-9 rounded-full bg-slate-900/80 hover:bg-yellow-400 hover:text-blue-950 flex items-center justify-center transition border border-slate-700"
+              >
+                <i class="fa-brands fa-whatsapp"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Términos, Condiciones y Copyright -->
+        <div
+          class="text-xs md:text-sm font-bold text-slate-300 mb-12 flex flex-col sm:flex-row items-center gap-2"
+        >
+          <a
+            href="#"
+            class="hover:underline uppercase tracking-wider text-white"
+            >TERMINOS Y CONDICIONES</a
+          >
+          <span class="hidden sm:inline">•</span>
+          <p class="text-center sm:text-left">
+            Suramericana de Espectáculos S.A. RIF: J-00045832-4 || © Copyright
+            2022. Cinex. Todos los derechos reservados
+          </p>
+        </div>
+
+        <!-- Logos de Productos / Formatos Cinex (Bottom Logos) -->
+        <div
+          class="pt-8 border-t border-slate-800/80 flex flex-wrap items-center justify-center md:justify-between gap-8 opacity-80 hover:opacity-100 transition"
+        >
+          <img
+            src="data:image/webp;base64,UklGRvgCAABXRUJQVlA4TOwCAAAvs0EWEIcgFkzmL92ZwvzPv0AghRtcogaDQcu27baN9MAHggnhzX+4FYgX+HFRVd0rov8Q3LaRJNnW3rtVwDXVmd55AP2vmTkrTSvjVEXrbWVoaspfJYjHv5cctC4ueu6VQf66oK6fXCnuY+iPMM2UE//vGmKoVN4r8Bv6DMaXvcnDYenqZHBJ9y+D+/LYt11V6essObjEnAw8hJa5zcZ2G2LyU5JnNB20nJWw8vH7gJ2vB0qbx725zYEbVdIjKtk/OP2CKbmLXT7XEKk5TIMNR06RKMlg7/BAka2KVt/KYCzZhxgUksfSPyC5RNxkGWav6/QCI9zERb2+e97Vi+bxd09oPUFtkWUo99l04PAMJnCsesxzUDWflyrNAyzcxVW2+bApAiuHSKzotnyb6JyVsweIpCquMt/J0O3TEkTymNaZQ8SWH57u0CByKcqV1Sj7HCjAoq8PX0RB2t/6ii/79McyhYnUPZvW0CzGBfsNBU+iQHWHnqUmFhfYimQHUYymna3YckxbY4pVe+sZsKRHfVP4V7/MEJL7rLWdKFh5UoBRmAeCnLPRqu/PEoRfFx4BgFYkO4nCld4mQwaVfTZ0nclX5iLOUP7rqAnMzql3og9ot93dXwTB705W2/gxWAGy7bnZmRuzv8YUIOOGUXU4ujJGuk6Nu7P2KmJ5f4nKgFWoT9PQudzvdeR3H/fs+vL5wP1eBUl5eaR4RE64lT2xnYewVplXo6PcEoz6OoqnNlDWYFfa1swtYqwnuTLYvvwLwqp5Xo12WL6pIdXiXu0eigHbjMPabyZ/3oLiy5JUzSLLVbusa70KEwXgk5ZgU9AN0Q54pTPQKmI/ivplZJhV/K9EbC4gq1gHn4mcc0Gswzr0hcg9d8JXt8MWG5CWANO3eX2xPIcWsdIX0V5G2luE1Y/D2TMsUpCVrRD3ZKLIXIS7Q3OnJUtbs3Resox9ySJlzXKvWZ60ZGlrlsFrln1Vsl4t8lPNvun/Vk0E"
+            alt="4DX"
+            class="h-7 w-auto grayscale hover:grayscale-0 transition"
+          />
+          <img
+            src="data:image/webp;base64,UklGRsIFAABXRUJQVlA4TLYFAAAv0EASEP+hqG0byCp/yDt+GwUDaduE+Ze8/QbStgnzL3n7FcS2DX37zpVEb7kEIIGE7P/Hw32qFYAODQ54ZICx/wtj/wUfHQdv/xUAqLAocAAJAQAAEBFh0AAGZpIN39a2V41s29bvCEeNfURCtcCARUNf7o0ymt1km0ozn9v9X5dAOE/UdicR/Z8A+T9qlRVFUZVFUaj034CsrBFu9HoVc6oyGDda68bzm3UaaXmDSa3ET6sxAFUaYVmDSZPL9KqeAKo0slKNwJWI3C8/eZLUUzDrqMoMAnMReVgulp88Sc0UoJN4qhCqRUTuXheL5SdPihAYFUmJRnAmIp+W94vF4vZmsXiTxIQAeRQlNYKNyPPtIvhlE4Y8gpIa4Vqel8+3i8Xi5v7+7ubhRaSYgTx+asx6vH19v10+P90tFot3uQLy2KkwT96Xty+vdwv/7ipYxU2O2UbkZfn+sFyOLJ5EqnkmiZnUzMNKXu+W94+Pi8X9+9PyRqSZBx0zGlesRO5ulnevi7vbP57v7yXHNfN4yXFVJfIqt/f3Im8Pj5I0VzFJrCTmOk0iInf3Ml5huqmKompGUMRKgdFmrUTSrJpAvRJ5l/EKk1rJqNIe0kgxnlnLZFqPmU0q46rG5FoC114ZJzkAmJWEVl6d7KQpM6WKGtO5BOcATBIltbeScA1AHbnDeK0BaK2zNkxKAHmMpABQSLC1CdBIf0zRFBq1svaLUa7bWzoR+XATiQE2MbIGYJKAy3Egj5X5sttLXf887VZfO9LKkeSevciOvIxJBSCJEA2gkul2IMku/dJzWJkvPU92IGkdj4478rIjDzKZAcgiBADWU+3AoRV7ufTkUX3pySOHA4fLcP4Yhu3AnjzJdAqgjI+VpyYuA/tWROxAcrvtSXJojzzsOXBo5UDyKKEAdHzkYXvyIrI9keTJ0R/aC3kiedy2R5LnS0gKAPFReOsJRx7ciRwOJDnsTzx/Xe/on05ncjgNPLcBmZdGx8bbTFj6g7tsSR5/qB+/str8g2d3IMmzu0g7kNupylPRoT0kY2JP3XF3EUm/2R+FwWiZZEX+dW9/KBGRtjtPpYiZcmIyaTDeAGg2AKBroJCZm5F1pCCbUWHSZJLWCMzDCowWsWKyoDWmcxFJTADWISUiByiSiXSDwJWIiA6BzsbyBpN5vMCUKpU0qxBqchFJYEIAo8uNRqiKjmqkVkqVmG9qoyStocMmta5jpfCar/vdcV/M+611ZtKxJDpyT7u+63oFoNFaN2GVvpJqoPSIROfKqxy7jgpGfTjnPgpT/vpVo7Q2/9sP66efrb9dXay1tl03GSZ0fIhXnMaKE/2dWPKrEdK6jr619Dv5J31VlVNlhGiv8wSKPLkT2VrSZhND13XbPdl3nRPy3HWnaq2nsghZA1A9zx0vnhVLWk8mnHU7caT4pFXFBsoAxUgSIanHMwfaWRfvLzrHGUkDKExsJEZrIOWZpEXibbtuO2K9ns51EiYrIJ3KoyQHtvStFs8P2Hl2jlSQCSNRmhh8GUbqa/y9p9vJrCygiBMpUB5JDj8Rtrd70rqeB5knWAFYa5gkUhJjvpw5/KxN2KhH8uR9WOs5ay+1AqA0ConVNfSOhw3qsHN3DtrR90g6nWvPJNEitd7TaSDMiiXtR8+DiIgl+67zzl33UZeVl0m8rjbuam1P9zEmPmlFUtQ5oEqJ2dTRFUAy0toxIa3t6ZydVQF/Akridj+ivJa0Ac7r5qQGUBpJ5Fz6ADvjLzrH/YwaQK5Lid3Lx7U6OutcWAkARSYRvB45uROHracmhq7rtkHayySGkxrFgX4rlmzNhG89pVYy0AJALpFcmczunftaNLltK1Ttr+pfW+t/Tu13DaDa2hIwmURzbhqttcHvrlOJ6FTj95tCIjtrfleVSnznze+oUolzVV2pKVKJ9ySrmjm6WEn0JyovJtVK/h8a"
+            alt="Cinex Cheff"
+            class="h-10 w-auto grayscale hover:grayscale-0 transition"
+          />
+          <img
+            src="data:image/webp;base64,UklGRlwEAABXRUJQVlA4TE8EAAAv0IAKEIcgFkzmL92ZwvzPv0AghRtcogaDQUuSrTqSdC4gQAi4sf/tCsiq6p73fET0fwL0/7xW/mrY4PlrYQNofyVs0ID2F6KRE0D769C7FrSfdEP5M8T9cyrQ/xRRfkwH6reFlD6zq9ZawqLYyWW7GFcx1xJXV5Suo2Qvy7XWEr8ubw77dyUY9lFMYRXr06vUIWxCvV6V9ROkxnNwMTbBPUgKnXePki5cgXFwkyUVZ/nYF8TsfOVIKZ6lu9Oz7XRlfRo7eHzdvO9XXkWHqDDYVwn6QYVNgiTZZO2SKihC2phTZJ39TGexDb617dJgWVep9azt3cur8O6SGmvr0BY2YZoGzMuk1Pr1XQ1G1DXoGw3aJoNpwLyClDp4OInO1/b2+GvklT1sVxlgZR1cUmPZpAu4L4f0gL9sAJcqPKbD7xkQJOmKuwy2GjRVeEzLAuMgupf5iT8lhnvCuJO2yQHGBPLrBvBVB4ZssK4yhywNSBXIkg2gKcA0/RRwHS7MKYsEMcA0bW+om+gepewH805SHkANOsy8i6zkZJIa73tRAGoY4OUVVeGRCrhFYCo6MKQKST+mQ/1EjbloDFVI2ttkbJxLkqz6y1uUwu0AXacZYEbtG2+3Vwbw5OAxAENyCNaAKk3gcWCY1EE/JwGjhLMISZJBVgedPrC5oZkku2Fmk0JjPe0gOjBM+8aySlLl/Th4VAWKMowG0CVl1s306j9IyQFGPtGgSSq4qdOP6oHCg1fLTk+SQuPwPujAMG3DYDklxcFhliZg6qybJJkvbr074yfJygDodpDBpEmTOuOrpNSBmSSFxnnaRMBN2+Kss6xymqULeBRZ+iVJefJuWj7woySF4vAcmFOUIEoPHPUzRadKssqn01YVuLXOE2AC0/IE8FWW1IB6857VJKuTbVoUKF+XDzLo0CbEnRpTjS6pQDmI0E+ie5R0Tfon3Cf1FesEmKmzH7G/PEqSs7+lWB6W3QFPL3M8fFmEvHqYJ7ohHUTIkCXZxONuQDqZHiV78EvjE9IBo3dneZvuXZUK8ERJSpwOtjMr8S6SlGCmhdlHmnh4ZWivUkySTbADDRzXO4GnRehw69SHlBzvUlv5VcZiLtJr36OkuupBklIJWi68Xc7hkyQpv2iSdAOtpFyd8tEFXlN6wO3lzJLyhK6TDNwL3UArKd8O044qKeOpIZWFR0mhDKC+1A6epLc9QL/0ce5PNin6YrZsWmcHMEkq7KvkbD1Luln7JUlhsp52ZA5hpeJsH9Ox+WSYClFp0YKWofMsVB4Hegna5xT0jZZqSabj8MDQMvbFyJKib7gl6fLXCFrXRTVJ0cdKla597It56dOKX+meXNJrwihBUmbY6rcYU1hJllIKWsa6LlqHK5lOQ4paR9so2IFkKaWgz60BDKo0ICveE0YpDNOfd0um0WWTrHe8JwzTn/zHbZC1j9n0Z78yyPpLmSDrr6WNrP9JBwA="
+            alt="Cinexclusivo"
+            class="h-6 w-auto grayscale hover:grayscale-0 transition"
+          />
+          <img
+            src="data:image/webp;base64,UklGRsADAABXRUJQVlA4TLMDAAAv0IAKEOcw/MM//Arbtm1T2emuAnIAwIVjwRAYcCQChoUHAwAgsTEw8KEIHHzQtm0rjKVsoLHT0iIBEfGs///RJKRKTV0fI/o/AfrfOZVekvtChMnRdv9V8MZ1cV+DxqqljyN2y/84z7q5UMJHUSC+xUX3gnQjBsPcJ9GZerHPJUiTepHiVVkrwYDhni3svRd3EXTTFWM4SQUgCeyswlVb+2aWgeEebBsc28mWrmLdJYUJEKXC0QT4QwW76mvTQgQY7qlc53wcElBOGiAlToMijDQgTkiSCpBfRNEJwz1TMKBngyQpAaTDBjRlwGBKk+nUwTeoUgaq3kV7pARYllz0khLAlKRgQKwwwoBdCaISTCUwVaDrRbZCdRfxOYKBBV3uHDdJ0YBWYTgPeA16aECUJkyg6gXWy+ZFUbpYjY8xwILOfefYJBWOBsNph64ABswgqXDcdc+iJIXE5JUlhmfYgKTzbJx6xcnldJJBUuNYnaQ4DkkviEp7562WHmCHrtM0gQk03wA7sSBtwD4BapBcmpwOdy+r8upe28l4ggbDSSFPwErksvvDcJIql9nH0jnWAgx/p6lS671Zkw/7hL/+/K5HLACT0+p1YUkqWHGS1A9mLFYvVcDK2nCVKvm+1LOXyxMs/w37M3jjskZJzgArTssNenLpYhavYwWIS1um6Rj72chOCpVjDAD+EbTNw8hep6GUpBeH0npJQdfZ7uwbVK/jDlaDpK1zHrQD+RmkEKP+nT4Xt8T4UWF3ih0rTlKaXA+5CeUp/iM7QP/RsYYVJylOloviRwYhQ3OSQudu0E76wFIw2yS5Hbs15Lo+r+rNgqTNaH7eoYRfPrAYSZJrUKV20cdJ+y3qA6ueqjDYR5fK2XDyeczvKegpfYzRLfkSX+PdDR+dpBjv4Cqb2aZqUjwZTseY9JwFoLmFSHlNLTciu+Tpt4oHC3IVL3didZNC8nqUnAftbQ5za7IpVdItc5XZO7BJBjP9wfiWoh61EOUGbyuQb1SCs6lbFKXee90oUsdCZfy+6WEPKsQ3OTPmjUTOlBdQY4xpz7MrmIUExekjKZRKWnOMiXvFeW8zmIVE93reQzTTe5yZ88w1Nah6HQWzkGbUExfmgPSmRA2hkdYyhKV65ycWfst65kOLetPEwOhrka7lcufX9jM5PVbUeqSXU7+QgNaBuLST1rY7IwU99isu48Ike8kX+ooz001bm5se3Ed3w8VLtxCDzsNSDHfyihV9DetV9foqpgHM6vW/JgA="
+            alt="Cinex Play"
+            class="h-7 w-auto grayscale hover:grayscale-0 transition"
+          />
+          <img
+            src="data:image/webp;base64,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"
+            alt="Cinex VIP"
+            class="h-7 w-auto grayscale hover:grayscale-0 transition"
+          />
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
